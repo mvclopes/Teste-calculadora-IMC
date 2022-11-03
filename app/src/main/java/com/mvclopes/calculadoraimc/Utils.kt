@@ -1,6 +1,9 @@
 package com.mvclopes.calculadoraimc
 
 internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
+    if (!entradaValida(pesoTxt, alturaTxt))
+        return IMCResult(Result.BLANK)
+
     val peso = pesoTxt.toFloat()
     val altura = alturaTxt.toFloat()
     val imc = peso / (altura * altura)
@@ -23,6 +26,10 @@ internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
     }
 }
 
+private fun entradaValida(peso: String, altura: String): Boolean {
+    return !(peso.isEmpty() || altura.isEmpty())
+}
+
 data class IMCResult(val result: Result)
 enum class Result(val label: String) {
     MAGREZA_III("Magreza Severa"),
@@ -32,5 +39,6 @@ enum class Result(val label: String) {
     SOBREPESO("Sobrepeso"),
     OBESIDADE_I("Obesidade Grau I"),
     OBESIDADE_II("Obesidade GHrau II (severa)"),
-    OBESIDADE_III("Obesidade GHrau III (mórbida)")
+    OBESIDADE_III("Obesidade GHrau III (mórbida)"),
+    BLANK("Insira os valores de peso e altura corretamente")
 }
