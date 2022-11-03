@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnMakeCalc.setOnClickListener {
             val pesoTxt = binding.edtPeso.text.toString()
             val alturaTxt = binding.edtAltura.text.toString()
-
             val imcResult = getImcResult(pesoTxt, alturaTxt)
 
             binding.txtResultImc.text = imcResult.result.label
