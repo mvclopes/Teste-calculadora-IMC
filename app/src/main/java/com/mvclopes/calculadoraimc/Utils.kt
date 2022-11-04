@@ -13,22 +13,16 @@ internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
     val peso = pesoTxt.toFloat()
     val altura = alturaTxt.toFloat()
     val imc = peso / (altura * altura)
-    if (imc < 16){
-        return IMCResult(Result.MAGREZA_III)
-    } else if (imc < 17){
-        return IMCResult(Result.MAGREZA_II)
-    } else if (imc < 18.5){
-        return IMCResult(Result.MAGREZA_I)
-    } else if (imc < 25){
-        return IMCResult(Result.OK)
-    } else if (imc < 30){
-        return IMCResult(Result.SOBREPESO)
-    } else if (imc < 35){
-        return IMCResult(Result.OBESIDADE_I)
-    } else if (imc < 40){
-        return IMCResult(Result.OBESIDADE_II)
-    } else {
-        return IMCResult(Result.OBESIDADE_III)
+
+    return when {
+        imc < 16 -> IMCResult(Result.MAGREZA_III)
+        imc in 16f..16.9f -> IMCResult(Result.MAGREZA_II)
+        imc in 17f..18.49f -> IMCResult(Result.MAGREZA_I)
+        imc in 18.5f..24.9f -> IMCResult(Result.OK)
+        imc in 25f..29.9f -> IMCResult(Result.SOBREPESO)
+        imc in 30f..34.9f -> IMCResult(Result.OBESIDADE_I)
+        imc in 35f..39.9f -> IMCResult(Result.OBESIDADE_II)
+        else -> IMCResult(Result.OBESIDADE_III)
     }
 }
 
