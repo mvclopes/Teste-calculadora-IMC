@@ -1,5 +1,11 @@
 package com.mvclopes.calculadoraimc
 
+/**
+ * Método responsável por calcular IMC do usuário baseado em seu peso e altura
+ * @param pesoTxt [String] peso do usuário
+ * @param alturaTxt [String] altura do usuário
+ * @return [IMCResult] IMC do usuário
+ */
 internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
     if (!entradaValida(pesoTxt, alturaTxt))
         return IMCResult(Result.BLANK)
@@ -26,6 +32,12 @@ internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
     }
 }
 
+/**
+ * Método responsável por verificar se entrada fornecida é válida
+ * @param peso [String]
+ * @param altura [String]
+ * @return [Boolean]
+ */
 private fun entradaValida(peso: String, altura: String): Boolean {
     return !(peso.isEmpty() || altura.isEmpty())
 }
